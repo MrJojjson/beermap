@@ -6,6 +6,8 @@ import { ClimbingBoxLoader } from 'react-spinners';
 import * as actions from './actions';
 import MainPage from './components/mainPage';
 
+import './App.css';
+
 class App extends React.Component {
   componentWillMount() {
     this.props.fetching();
@@ -24,7 +26,7 @@ class App extends React.Component {
   render() {
     const { fetchStatus } = this.props.data;
     return (
-      <div className="container">
+      <div className="app-container">
         <MainPage />
         {fetchStatus && fetchStatus === 'pending' ? this.renderLoader() : null}
       </div>

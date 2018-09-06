@@ -1,16 +1,40 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.scss';
+import { connect } from 'react-redux';
 
-const App = () => (
-  <div className="App">
-    <div className="App-header">
-      <img src={logo} className="App-logo" alt="logo" />
-      <h2>Welcome to React</h2>
-    </div>
-    <p className="App-intro">
-      To get started, edit <code>src/App.js</code> and save to reload.
-    </p>
-  </div>
-);
-export default App;
+import { ClimbingBoxLoader } from 'react-spinners';
+
+import * as actions from './actions';
+import MainPage from './components/mainPage';
+
+class App extends React.Component {
+  componentWillMount() {
+    this.props.fetching();
+    this.props.removing();
+  }
+
+  renderLoader = () => (
+    <ClimbingBoxLoader
+      className="loading-indicator"
+      sizeUnit={'px'}
+      size={150}
+      color={'#123abc'}
+    />
+  );
+
+  render() {
+    const { fetchStatus } = this.props.data;
+    return (
+      <div className="container">
+        <MainPage />
+        {fetchStatus && fetchStatus === 'pending' ? this.renderLoader() : null}
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = state => state;
+
+export default connect(
+  mapStateToProps,
+  actions
+)(App);

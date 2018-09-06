@@ -17,7 +17,11 @@ module.exports = {
       'singleQuote': true,
       'trailingComma': 'es5'
     }],
+    'react/jsx-filename-extension': [1, { 'extensions': ['.js', '.jsx'] }],
+    'react/prop-types': 0,
+    'import/prefer-default-export': 'off',
   },
+  'parser': 'babel-eslint',
   'parserOptions': {
     'ecmaFeatures': {
       'jsx': true,
